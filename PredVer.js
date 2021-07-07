@@ -2,10 +2,6 @@ class PredVer extends LivingCreature{
     constructor(x, y) {
         super(x,y)
     }
-    chooseCell(character) {
-
-        return super.chooseCell(character)
-    }
 
     move(r) {
         var emptyCells = this.chooseCell(0)

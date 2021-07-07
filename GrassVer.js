@@ -3,10 +3,6 @@ class GrassVer extends LivingCreature{
        super(x,y)
 
     }
-    chooseCell(character) {
-        return super.chooseCell(character)
-
-    }
 
     move(r) {
         var emptyCells = this.chooseCell(0)

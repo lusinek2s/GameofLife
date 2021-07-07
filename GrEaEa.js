@@ -2,9 +2,6 @@ class GrEaEa extends LivingCreature{
     constructor(x, y) {
         super(x,y)
     }
-    chooseCell(character) {
-        return super.chooseCell(character)
-    }
 
     move() {
         var emptyCells = this.chooseCell(0)

@@ -60,7 +60,7 @@ function generator(matLen, gr, grEat, pd, gv, eea, pdv, st) {
 
 let side = 20;
 
-let matrix = generator(30, 250, 95, 30, 10, 10, 10, 15)
+let matrix = generator(30, 250, 95, 30, 10, 10, 10, 75)
 
 var grassArr = []
 var grassEaterArr = []
@@ -68,6 +68,7 @@ var PredatorArr = []
 var GrassVerArr = []
 var GrEaEaArr = []
 var PredVerArr = []
+var TunavorArr = []
 
 
 
@@ -90,8 +91,8 @@ function setup() {
                 grassEaterArr.push(gre);
             }
             else if (matrix[y][x] == 3) {
-                var grep = new GrassEater(x, y);
-                grassEaterArr.push(grep);
+                var grep = new Predator(x, y);
+                PredatorArr.push(grep);
             }
             else if (matrix[y][x] == 4) {
                 var grv = new GrassVer(x, y);
@@ -104,6 +105,10 @@ function setup() {
             else if (matrix[y][x] == 6) {
                 var pdv = new PredVer(x, y);
                 PredVerArr.push(pdv);
+            }
+            else if (matrix[y][x] == 7) {
+                var tnv = new Tunavor(x, y);
+                TunavorArr.push(tnv);
             }
 
             console.log(grassArr);
@@ -156,7 +161,7 @@ function draw() {
             }
             else if (matrix[y][x] == 7) {
 
-                fill("black");
+                fill("#04FCE5");
                 rect(x * side, y * side, side, side);
             }
 
@@ -165,6 +170,9 @@ function draw() {
     }
     for (var i in grassArr) {
         grassArr[i].mul();
+    }
+    for (var i in TunavorArr) {
+        TunavorArr[i].mul();
     }
     for (var i in grassEaterArr) {
         grassEaterArr[i].mul();

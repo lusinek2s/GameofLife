@@ -5,20 +5,9 @@ class GrassEater extends LivingCreature{
         this.multiply = 0
     }
 
-    getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-    }
 
     chooseCell(character) {
+        this.getNewCoordinates()
         return super.chooseCell(character)
     }
 
@@ -63,6 +52,8 @@ class GrassEater extends LivingCreature{
     eat() {
         var emptyCells = this.chooseCell(1)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        var emptyCells2 = this.chooseCell(7)
+        var newCell2= emptyCells2[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             this.energy++
@@ -76,6 +67,22 @@ class GrassEater extends LivingCreature{
             for (var i in grassArr) {
                 if (newX == grassArr[i].x && newY == grassArr[i].y) {
                     grassArr.splice(i, 1)
+                    break
+                }
+            }
+        }
+        else if (newCell2) {
+            this.energy--
+            var newX = newCell2[0]
+            var newY = newCell2[1]
+
+            matrix[newY][newX] = matrix[this.y][this.x]
+            matrix[this.y][this.x] = 0
+            this.x = newX
+            this.y = newY
+            for (var i in TunavorArr) {
+                if (newX == TunavorArr[i].x && newY == TunavorArr[i].y) {
+                    TunavorArr.splice(i, 1)
                     break
                 }
             }
