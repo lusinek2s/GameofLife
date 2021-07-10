@@ -12,7 +12,7 @@ class Tunavor extends LivingCreature{
         var newCell = random(emptyCells);
 
         console.log(emptyCells, newCell);
-        if (newCell && this.multiply >= 15) {
+        if (newCell && this.multiply >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 7;
