@@ -1,4 +1,6 @@
-class Tunavor extends LivingCreature{
+let LivingCreature = require('./LivingCreature.js')
+
+module.exports = class Tunavor extends LivingCreature{
     constructor(x, y) {
         super(x,y)
         this.multiply = 0;

@@ -1,4 +1,6 @@
-class PredVer extends LivingCreature{
+let LivingCreature = require('./LivingCreature.js')
+
+module.exports = class PredVer extends LivingCreature{
     constructor(x, y) {
         super(x,y)
     }
