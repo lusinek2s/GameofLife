@@ -1,4 +1,5 @@
 let LivingCreature = require('./LivingCreature.js')
+var Predator = require('./Predator.js')
 
 module.exports = class PredVer extends LivingCreature{
     constructor(x, y) {

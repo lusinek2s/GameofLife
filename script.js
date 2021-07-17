@@ -13,7 +13,7 @@ function setup() {
 }
 
 function nkarel(matrix) {
-    console.log(matrix);
+    // console.log(matrix);
     
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -59,9 +59,18 @@ function nkarel(matrix) {
         }
     }
 }
+function tpel(grassArr) {
+    console.log(grassArr.length)
+}
 
 setInterval(
     function () {
         socket.on('send matrix', nkarel)
+    }
+    , 1000)
+
+setInterval(
+    function () {
+        socket.on('send grassArr', tpel)
     }
     , 1000)

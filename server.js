@@ -75,15 +75,15 @@ function generator(matLen, gr, grEat, pd, gv, eea, pdv, st) {
     return matrix;
 }
 
-let matrix = generator(30, 250, 95, 30, 10, 10, 10, 75)
+matrix = generator(30, 250, 95, 30, 10, 10, 10, 75)
 
-var grassArr = []
-var grassEaterArr = []
-var PredatorArr = []
-var GrassVerArr = []
-var GrEaEaArr = []
-var PredVerArr = []
-var TunavorArr = []
+grassArr = []
+grassEaterArr = []
+PredatorArr = []
+GrassVerArr = []
+GrEaEaArr = []
+PredVerArr = []
+TunavorArr = []
 var Grass = require('./Grass.js')
 var GrassEater = require('./GrassEater.js')
 var Predator = require('./Predator.js')
@@ -92,11 +92,13 @@ var GrEaEa = require('./GrEaEa.js')
 var PredVer = require('./PredVer.js')
 var Tunavor = require('./Tunavor.js')
 
+
 function createobject(matrix){
+    // console.log(333)
     for (var y = 0; y < matrix.length; ++y) {
         for (var x = 0; x < matrix[y].length; ++x) {
             if (matrix[y][x] == 1) {
-                console.log(matrix[y][x])
+                
                 var gr = new Grass(x, y);
                 grassArr.push(gr);
             }
@@ -125,14 +127,15 @@ function createobject(matrix){
                 TunavorArr.push(tnv);
             }
 
-            console.log(grassArr);
+            // console.log(grassArr);
         }
     }
+
     io.sockets.emit('send matrix' , matrix)
 }
 
 function game(){
-    console.log(grassArr.length);
+    // console.log(grassArr.length);
     
     for (var i in grassArr) {
         grassArr[i].mul();
@@ -175,17 +178,16 @@ function game(){
     }
 
     console.log(matrix[0]);
-    
+    io.sockets.emit('send grassArr', grassArr)
     io.sockets.emit('send matrix' , matrix)
 }
 
 setInterval(function(){
     game()
-    console.log("data");
+    // console.log("data");
     
 }, 1000)
 
-
-io.on("conection", function(socket){
+io.on("connection", function(socket){
     createobject(matrix)
 })
