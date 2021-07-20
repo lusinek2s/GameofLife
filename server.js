@@ -3,6 +3,7 @@ let app = express()
 
 let server = require('http').Server(app)
 let io = require('socket.io')(server)
+var fs = require("fs");
 server.listen(3000)
 
 app.use(express.static('.'))
@@ -10,7 +11,7 @@ app.use(express.static('.'))
 app.get('/',function(req,res){
     res.redirect('index.html')
 })
-
+ 
 
 
 function generator(matLen, gr, grEat, pd, gv, eea, pdv, st) {
@@ -177,7 +178,7 @@ function game(){
         }
     }
 
-    console.log(matrix[0]);
+    // console.log(matrix[0]);
     io.sockets.emit('send grassArr', grassArr)
     io.sockets.emit('send matrix' , matrix)
 }
@@ -188,6 +189,29 @@ setInterval(function(){
     
 }, 1000)
 
+var flag = true
+
+
 io.on("connection", function(socket){
+    if(flag){
     createobject(matrix)
+    console.log(111);
+    flag = false
+}
+    
 })
+
+
+var statistics = {}
+
+setInterval(function(){
+    statistics.grass = grassArr.length
+    statistics.grassEater = grassEaterArr.length
+    statistics.Predator = PredatorArr.length
+    statistics.GrassVer = GrassVerArr.length
+    statistics.GrEaEa = GrEaEaArr.length
+    statistics.PredVer = PredVerArr.length
+    statistics.Tunavor = TunavorArr.length
+
+    fs.writeFileSync("statistics.json",
+    JSON.stringify(statistics))},1000)

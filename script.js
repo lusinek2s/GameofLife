@@ -9,7 +9,7 @@ function setup() {
     frameRate(2);
     createCanvas(30 * side, 30 * side);
     background('#acacac');
-
+ 
 }
 
 function nkarel(matrix) {

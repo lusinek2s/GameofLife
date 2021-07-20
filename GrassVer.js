@@ -1,4 +1,5 @@
 let LivingCreature = require('./LivingCreature.js')
+var Grass = require('./Grass.js')
 
 module.exports = class GrassVer extends LivingCreature{
     constructor(x, y) {
@@ -13,7 +14,7 @@ module.exports = class GrassVer extends LivingCreature{
 
         if (newCell) {
             if (r == 1) {
-                console.log(newCell)
+                // console.log(newCell)
                 var newX = newCell[0]
                 var newY = newCell[1]
                 matrix[newY][newX] = matrix[this.y][this.x]

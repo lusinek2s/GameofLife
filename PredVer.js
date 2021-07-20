@@ -13,7 +13,7 @@ module.exports = class PredVer extends LivingCreature{
 
         if (newCell) {
             if (r == 3) {
-                console.log(newCell)
+                // console.log(newCell)
                 var newX = newCell[0]
                 var newY = newCell[1]
                 matrix[newY][newX] = matrix[this.y][this.x]
