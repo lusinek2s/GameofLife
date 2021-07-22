@@ -8,10 +8,10 @@ server.listen(3000)
 
 app.use(express.static('.'))
 
-app.get('/',function(req,res){
+app.get('/', function (req, res) {
     res.redirect('index.html')
 })
- 
+
 
 
 function generator(matLen, gr, grEat, pd, gv, eea, pdv, st) {
@@ -72,7 +72,7 @@ function generator(matLen, gr, grEat, pd, gv, eea, pdv, st) {
         }
     }
 
-    io.sockets.emit('send matrix' , matrix)
+    io.sockets.emit('send matrix', matrix)
     return matrix;
 }
 
@@ -94,12 +94,12 @@ var PredVer = require('./PredVer.js')
 var Tunavor = require('./Tunavor.js')
 
 
-function createobject(matrix){
+function createobject(matrix) {
     // console.log(333)
     for (var y = 0; y < matrix.length; ++y) {
         for (var x = 0; x < matrix[y].length; ++x) {
             if (matrix[y][x] == 1) {
-                
+
                 var gr = new Grass(x, y);
                 grassArr.push(gr);
             }
@@ -132,12 +132,12 @@ function createobject(matrix){
         }
     }
 
-    io.sockets.emit('send matrix' , matrix)
+    io.sockets.emit('send matrix', matrix)
 }
 
-function game(){
+function game() {
     // console.log(grassArr.length);
-    
+
     for (var i in grassArr) {
         grassArr[i].mul();
     }
@@ -180,31 +180,31 @@ function game(){
 
     // console.log(matrix[0]);
     io.sockets.emit('send grassArr', grassArr)
-    io.sockets.emit('send matrix' , matrix)
+    io.sockets.emit('send matrix', matrix)
 }
 
-setInterval(function(){
+setInterval(function () {
     game()
     // console.log("data");
-    
+
 }, 1000)
 
 var flag = true
 
 
-io.on("connection", function(socket){
-    if(flag){
-    createobject(matrix)
-    console.log(111);
-    flag = false
-}
-    
+io.on("connection", function (socket) {
+    if (flag) {
+        createobject(matrix)
+        console.log(111);
+        flag = false
+    }
+
 })
 
 
 var statistics = {}
 
-setInterval(function(){
+setInterval(function () {
     statistics.grass = grassArr.length
     statistics.grassEater = grassEaterArr.length
     statistics.Predator = PredatorArr.length
@@ -214,4 +214,30 @@ setInterval(function(){
     statistics.Tunavor = TunavorArr.length
 
     fs.writeFileSync("statistics.json",
-    JSON.stringify(statistics))},1000)
+        JSON.stringify(statistics))
+}, 1000)
+
+weather = "garun"
+
+
+setInterval(function () {
+    if (weather == "amar") {
+        weather = "ashun"
+    }
+    else if (weather == "ashun") {
+        weather = "dzmer"
+    }
+    else if (weather == "dzmer") {
+        weather = "garun"
+    }
+    else if (weather == "garun") {
+        weather = "amar"
+    }
+
+    io.sockets.emit('send weather', weather)
+
+
+}, 4000)
+
+
+
