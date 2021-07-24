@@ -217,7 +217,7 @@ setInterval(function () {
         JSON.stringify(statistics))
 }, 1000)
 
-weather = "garun"
+weather = "amar"
 
 
 setInterval(function () {
@@ -235,7 +235,6 @@ setInterval(function () {
     }
 
     io.sockets.emit('send weather', weather)
-
 
 }, 4000)
 

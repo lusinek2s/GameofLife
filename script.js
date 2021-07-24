@@ -24,20 +24,20 @@ function nkarel(matrix) {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 1) {
-                if (Weather == amar) {
-                    fill("green");
+                if (Weather == "amar") {
+                    fill("#72FF00");
                     rect(x * side, y * side, side, side);
                 }
-                else if (Weather == ashun) {
+                else if (Weather == "ashun") {
                     fill("#CBAD2E");
                     rect(x * side, y * side, side, side);
                 }
-                else if (Weather == dzmer) {
+                else if (Weather == "dzmer") {
                     fill("white");
                     rect(x * side, y * side, side, side);
                 }
-                else if (Weather == garun) {
-                    fill("#72FF00");
+                else if (Weather == "garun") {
+                    fill("green");
                     rect(x * side, y * side, side, side);
                 }
 
