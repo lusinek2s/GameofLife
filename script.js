@@ -93,3 +93,16 @@ setInterval(
     , 1000)
 
 
+    
+function kill() {
+    console.log(11111);
+    
+    socket.emit("kill")
+}
+function addGrass() {
+    socket.emit("add grass")
+}
+function addGrassEater() {
+    socket.emit("add grassEater")
+}
+
